@@ -23,20 +23,23 @@ const SGXWebsite = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("home");
 
-    // Simulated animation hook (replace with framer-motion in actual Next.js)
-    const useAnimation = (initial, animate, delay = 0) => {
-        const [style, setStyle] = useState({ opacity: 0, transform: "translateY(20px)" });
+    const useAnimation = (
+        initial: { opacity: number; transform: string },
+        animate: { opacity: number; transform: string },
+        delay = 0
+    ): { style: React.CSSProperties } => {
+        const [style, setStyle] = useState<React.CSSProperties>(initial);
 
         useEffect(() => {
             const timer = setTimeout(() => {
                 setStyle({
-                    opacity: 1,
-                    transform: "translateY(0px)",
+                    opacity: animate.opacity,
+                    transform: animate.transform,
                     transition: "all 0.6s ease",
                 });
             }, delay);
             return () => clearTimeout(timer);
-        }, [delay]);
+        }, [delay, animate]);
 
         return { style };
     };
@@ -105,7 +108,11 @@ const SGXWebsite = () => {
     );
 
     const HeroSection = () => {
-        const { style } = useAnimation();
+        const { style } = useAnimation(
+            { opacity: 0, transform: "translateY(20px)" },
+            { opacity: 1, transform: "translateY(0)" },
+            0
+        );
 
         return (
             <section
@@ -204,7 +211,11 @@ const SGXWebsite = () => {
     };
 
     const AboutSection = () => {
-        const { style } = useAnimation({}, {}, 200);
+        const { style } = useAnimation(
+            { opacity: 0, transform: "translateY(20px)" },
+            { opacity: 1, transform: "translateY(0)" },
+            200
+        );
 
         return (
             <section id="about" className="py-20 bg-gray-900">
@@ -271,7 +282,11 @@ const SGXWebsite = () => {
     };
 
     const EventsSection = () => {
-        const { style } = useAnimation({}, {}, 400);
+        const { style } = useAnimation(
+            { opacity: 0, transform: "translateY(20px)" },
+            { opacity: 1, transform: "translateY(0)" },
+            400
+        );
 
         const events = [
             {
@@ -378,7 +393,11 @@ const SGXWebsite = () => {
     };
 
     const CommunitySection = () => {
-        const { style } = useAnimation({}, {}, 600);
+        const { style } = useAnimation(
+            { opacity: 0, transform: "translateY(20px)" },
+            { opacity: 1, transform: "translateY(0)" },
+            600
+        );
 
         return (
             <section id="community" className="py-20 bg-gray-900">
@@ -514,7 +533,11 @@ const SGXWebsite = () => {
     };
 
     const ContactSection = () => {
-        const { style } = useAnimation({}, {}, 800);
+        const { style } = useAnimation(
+            { opacity: 0, transform: "translateY(20px)" },
+            { opacity: 1, transform: "translateY(0)" },
+            800
+        );
 
         return (
             <section id="contact" className="py-20 bg-gray-800">
