@@ -14,7 +14,7 @@ const robotoMono = Roboto_Mono({
 
 export const metadata: Metadata = {
     title: "Semarang Gelut Xtreme",
-    description: "An Fighting Game Community based in Semarang, Indonesia",
+    description: "A Fighting Game Community based in Semarang, Indonesia",
 };
 
 export default function RootLayout({
